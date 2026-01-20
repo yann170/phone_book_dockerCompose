@@ -9,11 +9,9 @@ class UserRead(schemas.BaseUser[uuid.UUID]):
     email: EmailStr
 
 
-
 class UserCreate(schemas.BaseUserCreate):
     username: str
 
-  
 
 class UserUpdate(schemas.BaseUserUpdate):
     username: str | None = None

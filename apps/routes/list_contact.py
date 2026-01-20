@@ -3,8 +3,7 @@ from fastapi import APIRouter, Depends, HTTPException, Query
 from apps.schema.contact import ContactRead
 from ..crud.user import get_user_by_id
 from auth_app.config.database import get_async_session
-from ..models.models import ListContact, User
-from ..schema.user import UserReadSimple, UserUpdate
+from ..models.models import ListContact
 from auth_app.service.authenticate import current_active_user
 from sqlalchemy.exc import IntegrityError
 from sqlalchemy.ext.asyncio import AsyncSession
@@ -32,6 +31,7 @@ router = APIRouter(
 async def create_contact_list(
     contactlist: contactlistCreate, session: AsyncSession = Depends(get_async_session)
 ):
+
     db_list = ListContact.model_validate(contactlist)
     session.add(db_list)
     await session.commit()  # Obligatoire en async

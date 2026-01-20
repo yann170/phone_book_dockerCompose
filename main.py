@@ -1,21 +1,20 @@
 import os
-from fastapi.middleware.cors import CORSMiddleware # type: ignore
+from fastapi.middleware.cors import CORSMiddleware  # type: ignore
 from apps.core.core import origins
 import uuid
-from fastapi import FastAPI, Depends 
+from fastapi import FastAPI, Depends
 from apps.models.models import User
-from fastapi_users import FastAPIUsers # type: ignore
+from fastapi_users import FastAPIUsers  # type: ignore
 from apps.models.models import User
-from apps.routes import user,contact, list_contact
-from auth_app.schema.schema import UserRead, UserUpdate
-from auth_app.service. authenticate import auth_backend
-from auth_app.service.user_manager import get_user_manager
-from auth_app.schema.schema import UserRead, UserUpdate,UserCreate
+from apps.routes import user, contact, list_contact
+from apps.auth_app.schema.schema import UserRead, UserUpdate
+from apps.auth_app.service.authenticate import auth_backend
+from apps.auth_app.service.user_manager import get_user_manager
+from apps.auth_app.schema.schema import UserRead, UserUpdate, UserCreate
 import uuid
-from auth_app.config.database import get_user_db
+from apps.auth_app.config.database import get_user_db
 from fastapi import FastAPI
-from fastapi_users import FastAPIUsers # type: ignore
-
+from fastapi_users import FastAPIUsers  # type: ignore
 
 
 app = FastAPI(
@@ -26,13 +25,11 @@ app = FastAPI(
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=[str(origin) for origin in origins if origin], 
+    allow_origins=[str(origin) for origin in origins if origin],
     allow_credentials=True,
     allow_methods=["*"],
-    allow_headers=["*"], 
+    allow_headers=["*"],
 )
-
-
 
 
 # auth_app configuration
@@ -62,10 +59,10 @@ app.include_router(
     tags=["auth"],
 )
 app.include_router(
-    fastapi_users.get_reset_password_router(), 
-    prefix="/auth", 
-    tags=["auth"]
+    fastapi_users.get_reset_password_router(), prefix="/auth", tags=["auth"]
 )
 
-app.include_router(contact.router,)
+app.include_router(
+    contact.router,
+)
 app.include_router(list_contact.router)
