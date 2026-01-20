@@ -4,16 +4,20 @@ from uuid import UUID
 from fastapi import HTTPException
 from sqlmodel import Session, select
 from ..models.models import User
+from sqlalchemy.ext.asyncio import AsyncSession, async_sessionmaker, create_async_engine
+from auth_app.config.database import get_async_session
+from fastapi import Depends
+from sqlmodel import SQLModel
 
 
 
-def get_user_by_id(session: Session, user_id: UUID) -> Optional[User]:
-    user = session.get(User, user_id)
-    if not user or user.statut == "delete" :
-        raise HTTPException(status_code=404, detail="User not found")
-    return user
 
-def get_user_by_username(session: Session, username: str) -> Optional[User]:
+async def get_user_by_id(session: AsyncSession, user_id: UUID) -> Optional[User]:
+     result = await session.execute(select(User).where(User.id == user_id and User.is_active != "delete"))
+     return result.scalar_one_or_none()
+    
+""" 
+async def get_user_by_username(session: Session, username: str) -> Optional[User]:
     stmt = select(User).where(User.username == username)
     user = session.exec(stmt).first()
     if not user or user.statut == "delete":
@@ -22,9 +26,10 @@ def get_user_by_username(session: Session, username: str) -> Optional[User]:
     return user
 
 
-def get_role_by_username(session: Session, username: str) -> Optional[str]:
+async def get_role_by_username(session: Session, username: str) -> Optional[str]:
     stmt = select(User).where(User.username == username)
     user = session.exec(stmt).first()
     if user and user.statut != "delete":
-        return user.role
-    return None
+        return user.rol
+    return None              """
+

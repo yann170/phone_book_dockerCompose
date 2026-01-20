@@ -4,7 +4,7 @@ services:
     env_file: .env 
     image: postgres:17-alpine 
     volumes:
-      - ./data_apps_base/db:/var/lib/postgresql/data 
+      - ./phoneBook_app/db:/var/lib/postgresql/data 
     environment: 
       POSTGRES_DB: ${DB_NAME} 
       POSTGRES_USER: ${DB_USER}    
@@ -13,8 +13,8 @@ services:
       - "5433:5432" 
     healthcheck: 
       test: ["CMD-SHELL", "pg_isready -U $$POSTGRES_USER -d $$POSTGRES_DB"]
-      interval: 25s
-      timeout: 25s
+      interval: 100s
+      timeout: 100s
       retries: 5
     
   backend:
@@ -22,7 +22,8 @@ services:
     ports:
       - "8000:8000"    
     environment:
-      DATABASE_URL: postgresql://${DB_USER}:${DB_PASSWORD}@db:5432/${DB_NAME}
+      DATABASE_URL: postgresql+asyncpg://phoneBookUser:phoneBookPassword@db:5432/phoneBookDb
+      PYTHONASYNCIODEBUG : "1"
     depends_on: 
       db:
         condition: service_healthy 
@@ -30,4 +31,4 @@ services:
       - .:/app 
 
 volumes:
-  postgres_data: 
+  phoneBook_data: 

@@ -3,11 +3,16 @@ from logging.config import fileConfig
 from sqlalchemy import engine_from_config
 from sqlalchemy import pool
 from alembic import context
-from apps.models.models import User
 import os
 from dotenv import load_dotenv # type: ignore
 from sqlmodel import SQLModel
 load_dotenv()
+
+
+
+
+
+
 
 
 # this is the Alembic Config object, which provides
@@ -18,6 +23,7 @@ DATABASE_URL = os.getenv("DATABASE_URL")
 if DATABASE_URL:
     config.set_main_option("sqlalchemy.url", DATABASE_URL)
 
+
 target_metadata = SQLModel.metadata
 
 # Interpret the config file for Python logging.
@@ -27,7 +33,7 @@ if config.config_file_name is not None:
 
 # add your model's MetaData object here
 # for 'autogenerate' support
-# from myapp import mymodel
+#from myapp import mymodel
 # target_metadata = mymodel.Base.metadata
 
 
@@ -57,8 +63,8 @@ def run_migrations_offline() -> None:
         dialect_opts={"paramstyle": "named"},
     )
 
-    with context.begin_transaction():
-        context.run_migrations()
+    ##with context.begin_transaction():
+        ## context.run_migrations()
 
 
 def run_migrations_online() -> None:

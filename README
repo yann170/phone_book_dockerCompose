@@ -17,16 +17,6 @@
 ###git clone https://github.com/ton-username/MonProjetFastAPI.git
 ###cd MonProjetFastAPI
 
-###Créer un fichier .env basé sur .env.example et configurer les variables d'environnement.
-####DB_NAME=hotspot_db
-####DB_USER=myuser
-####DB_PASSWORD=mypassword
-####DB_HOST=localhost
-####DB_PORT=5432
-####SECRET_KEY=your_secret_key
-####DATABASE_URL=postgresql+asyncpg://myuser:mypassword@db:5432/hotspot_db
-####DATABASE_URL_s=postgresql+asyncpg://myuser:mypassword@db:5432/hotspot_db
-
 
 ##build et lancement du contenaire
 ###docker compose up --build

@@ -19,15 +19,17 @@ class UserReadSimple(SQLModel):
     email: Optional[EmailStr] = None
     created_at: datetime
     numero: Optional[str] = None
-    statut: str
-    role :  str 
 
 
 class UserUpdate(SQLModel):
     username: Optional[str] = None
     email: Optional[EmailStr] = None
     numero: Optional[str] = None
-    statut: Optional[str] = None
+   
 
 class UserDelete(SQLModel):
     id: UUID  
+
+class superUserCreate(UserCreate):
+    is_superuser : bool
+

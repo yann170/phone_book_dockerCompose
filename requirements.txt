@@ -1,7 +1,6 @@
 fastapi[standard]  
 uvicorn[standard]
 sqlmodel
-psycopg2-binary
 alembic
 python-dotenv
 routeros-api==0.8.0
@@ -12,6 +11,7 @@ passlib[bcrypt]
 python-jose[cryptography]
 fastapi-users[sqlmodel]
 asyncpg
+psycopg2-binary
 PyJWT[crypto]  
 fastapi-users-db-sqlmodel
 alembic

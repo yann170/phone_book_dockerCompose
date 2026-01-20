@@ -4,14 +4,18 @@ from apps.core.core import origins
 import uuid
 from fastapi import FastAPI, Depends 
 from apps.models.models import User
-from fastapi_users import FastAPIUsers 
+from fastapi_users import FastAPIUsers # type: ignore
 from apps.models.models import User
-from apps.routes import user
+from apps.routes import user,contact, list_contact
 from auth_app.schema.schema import UserRead, UserUpdate
 from auth_app.service. authenticate import auth_backend
 from auth_app.service.user_manager import get_user_manager
 from auth_app.schema.schema import UserRead, UserUpdate,UserCreate
 import uuid
+from auth_app.config.database import get_user_db
+from fastapi import FastAPI
+from fastapi_users import FastAPIUsers # type: ignore
+
 
 
 app = FastAPI(
@@ -27,6 +31,7 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"], 
 )
+
 
 
 
@@ -61,3 +66,6 @@ app.include_router(
     prefix="/auth", 
     tags=["auth"]
 )
+
+app.include_router(contact.router,)
+app.include_router(list_contact.router)
