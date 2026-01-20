@@ -1,10 +1,10 @@
 from fastapi import APIRouter, Depends, HTTPException, Query
 
-from apps.schema.contact import ContactRead
+from ..schema.contact import ContactRead
 from ..crud.user import get_user_by_id
-from auth_app.config.database import get_async_session
+from ..auth_app.config.database import get_async_session
 from ..models.models import ListContact
-from auth_app.service.authenticate import current_active_user
+from ..auth_app.service.authenticate import current_active_user
 from sqlalchemy.exc import IntegrityError
 from sqlalchemy.ext.asyncio import AsyncSession
 from fastapi import APIRouter, Depends, HTTPException, Query
@@ -14,7 +14,7 @@ from typing import List
 from sqlalchemy.ext.asyncio import AsyncSession
 from ..models.models import User, Contact
 from ..schema.contactList import contactlistCreate, contactlistRead, contactlistUpdate
-from auth_app.service.authenticate import current_active_user
+from ..auth_app.service.authenticate import current_active_user
 from sqlalchemy.orm import selectinload
 
 
