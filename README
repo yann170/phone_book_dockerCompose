@@ -1,0 +1,44 @@
+#  README.md
+#MonProjetFastAPI
+
+##🚀 Description
+###Une API REST minimale construite avec FastAPI, SQLModel, et PostgreSQL.
+###Prête à être clonée et utilisée comme template pour de nouveaux projets.
+
+##⚙️ Fonctionnalités
+###Authentification avec FastAPI Users (JWT ou email/password).
+###Gestion de la base de données avec SQLModel.
+###Migrations avec Alembic.
+###Dockerisé pour un déploiement facile.
+###Structure modulable pour ajouter rapidement de nouveaux endpoints.
+
+##📦 Installation
+
+###git clone https://github.com/ton-username/MonProjetFastAPI.git
+###cd MonProjetFastAPI
+
+###Créer un fichier .env basé sur .env.example et configurer les variables d'environnement.
+####DB_NAME=hotspot_db
+####DB_USER=myuser
+####DB_PASSWORD=mypassword
+####DB_HOST=localhost
+####DB_PORT=5432
+####SECRET_KEY=your_secret_key
+####DATABASE_URL=postgresql+asyncpg://myuser:mypassword@db:5432/hotspot_db
+####DATABASE_URL_s=postgresql+asyncpg://myuser:mypassword@db:5432/hotspot_db
+
+
+##build et lancement du contenaire
+###docker compose up --build
+
+##commandes alemebic pour créer la base de données et les tables
+###docker compose exec web alembic revision --autogenerate -m "Initial migration"
+###docker compose exec web alembic upgrade head
+
+##📚 Documentation
+###La documentation interactive est disponible à l'adresse http://localhost:8000/docs une fois le
+###http://localhost:8000/redoc serveur en cours d'exécution.
+
+
+
+
