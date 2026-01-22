@@ -5,7 +5,6 @@ from sqlmodel import Session, select
 from ..models.models import User
 from sqlalchemy.ext.asyncio import AsyncSession
 from fastapi import Depends
-from sqlmodel import SQLModel
 
 
 async def get_user_by_id(session: AsyncSession, user_id: UUID) -> Optional[User]:

@@ -4,10 +4,10 @@ from sqlmodel import Session, select
 from uuid import UUID
 from typing import Annotated, List
 from ..crud.user import get_user_by_id
-from apps.auth_app.config.database import get_async_session
+from auth_app.config.database import get_async_session
 from ..models.models import User
 from ..schema.user import UserReadSimple, UserUpdate
-from apps.auth_app.service.authenticate import current_active_user
+from auth_app.service.authenticate import current_active_user
 from sqlalchemy.exc import IntegrityError
 from sqlalchemy.ext.asyncio import AsyncSession
 from fastapi import APIRouter, Depends, HTTPException, Query
@@ -17,7 +17,7 @@ from typing import List
 from sqlalchemy.ext.asyncio import AsyncSession
 from ..models.models import User
 from ..schema.user import UserReadSimple, UserUpdate
-from apps.auth_app.service.authenticate import (
+from auth_app.service.authenticate import (
     current_active_user,
     current_active_user_is_superUser,
 )
