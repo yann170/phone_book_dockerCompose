@@ -5,14 +5,12 @@ import uuid
 from fastapi import FastAPI, Depends
 from apps.models.models import User
 from fastapi_users import FastAPIUsers  # type: ignore
-from apps.models.models import User
 from apps.routes import user, contact, list_contact
 from apps.auth_app.schema.schema import UserRead, UserUpdate
 from apps.auth_app.service.authenticate import auth_backend
 from apps.auth_app.service.user_manager import get_user_manager
 from apps.auth_app.schema.schema import UserRead, UserUpdate, UserCreate
 import uuid
-from apps.auth_app.config.database import get_user_db
 from fastapi import FastAPI
 from fastapi_users import FastAPIUsers  # type: ignore
 

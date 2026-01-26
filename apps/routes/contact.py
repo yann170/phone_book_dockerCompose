@@ -5,9 +5,9 @@ from typing import List
 
 from ..schema.contactList import contactlistRead
 from ..util.contact import verified_email
-from auth_app.config.database import get_async_session
+from ..auth_app.config.database import get_async_session
 from ..models.models import Contact, ListContact
-from auth_app.service.authenticate import current_active_user
+from ..auth_app.service.authenticate import current_active_user
 from sqlalchemy.ext.asyncio import AsyncSession
 from fastapi import APIRouter, Depends, HTTPException, Query
 from sqlmodel import select
